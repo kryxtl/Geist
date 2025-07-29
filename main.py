@@ -1,17 +1,18 @@
+import os
+import asyncio
+import threading
 import discord
 from discord.ext import commands
-import asyncio
 import discum
-import threading
-
-import player
 from keep_alive import keep_alive
+import player
+from dotenv import load_dotenv
 
-# === CONFIG ===
-BOT_TOKEN = 'YOUR_BOT_TOKEN'
-USER_TOKEN = 'YOUR_USER_TOKEN'
+load_dotenv()  # Load secrets from .env
 
-# === Discord Bot Setup ===
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+USER_TOKEN = os.environ.get("USER_TOKEN")
+
 intents = discord.Intents.default()
 intents.messages = True
 intents.message_content = True
@@ -19,8 +20,6 @@ intents.guilds = True
 intents.voice_states = True
 
 bot = commands.Bot(command_prefix='!', intents=intents)
-
-# === Discum Setup ===
 client = discum.Client(token=USER_TOKEN, log=True)
 
 @bot.event
@@ -57,6 +56,5 @@ def run_all():
     threading.Thread(target=bot.run, args=(BOT_TOKEN,), daemon=True).start()
     threading.Thread(target=client.gateway.run, daemon=True).start()
 
-# === Main ===
 run_all()
 keep_alive()
