@@ -33,5 +33,5 @@ If you found this helpful and want to support future work:
 **Litecoin (LTC) Address: ltc1qr5cjw0t6qz50p7qcexfg6aewmrvy8w475kdjp9 **
 
 <p align="center">
-  <img src="assets/qr.png" alt="Litecoin QR Code" width="200">
+  <img src="qr.jpg" alt="Litecoin QR Code" width="200">
 </p>
